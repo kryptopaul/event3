@@ -5,7 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderSimple.module.css";
 
 const links = [
-  { link: "/about", label: "Features" },
+  { link: "/", label: "Home" },
   { link: "/pricing", label: "Pricing" },
   { link: "/learn", label: "Learn" },
   { link: "/community", label: "Community" },

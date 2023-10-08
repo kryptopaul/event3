@@ -18,7 +18,7 @@ import classes from "./HeroBullets.module.css";
 
 export function HeroBullets() {
   return (
-    <Container size="md" mt="-10rem">
+    <Container size="md">
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.title}>
@@ -27,7 +27,7 @@ export function HeroBullets() {
           </Title>
           <Text c="dimmed" mt="md">
             Organise events, meetups and conferences with ease. Claim digital
-            proofs of attendance regardless of your Web3 familiarity.
+            proofs of attendance regardless of your Web3 experience.
           </Text>
 
           <List
@@ -44,15 +44,16 @@ export function HeroBullets() {
             }
           >
             <List.Item>
-              <b>No Web3 wallet required</b> – thanks to the power of account abstraction, we'll handle everything for you 
+              <b>No Web3 wallet required</b> – login with your social media or
+              email.
             </List.Item>
             <List.Item>
-              <b>Free and open source</b> – all packages have MIT license, you
-              can use Mantine in any project
+              <b>Keep track of your events</b> – claim digital proofs of
+              attendance upon each meetup.
             </List.Item>
             <List.Item>
-              <b>No annoying focus ring</b> – focus ring will appear only when
-              user navigates with keyboard
+              <b>Powered by Safe</b> – We're using Safe AA stack to power our
+              platform.
             </List.Item>
           </List>
 
