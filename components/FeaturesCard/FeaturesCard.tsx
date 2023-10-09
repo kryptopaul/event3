@@ -27,7 +27,7 @@ export function FeaturesCard() {
                         Price per ticket
                     </Text>
                 </div>
-                <Badge size='xl' variant="outline">4.99 GBP</Badge>
+                <Badge size='xl' variant="outline">$4.99</Badge>
             </Group>
             {/* 
       <Card.Section className={classes.section} mt="md">
