@@ -6,9 +6,9 @@ import classes from "./HeaderSimple.module.css";
 
 const links = [
   { link: "/", label: "Home" },
-  { link: "/pricing", label: "Pricing" },
-  { link: "/learn", label: "Learn" },
-  { link: "/community", label: "Community" },
+  // { link: "/pricing", label: "Pricing" },
+  // { link: "/learn", label: "Learn" },
+  // { link: "/community", label: "Community" },
 ];
 
 export function HeaderSimple() {
