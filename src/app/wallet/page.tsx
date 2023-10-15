@@ -27,114 +27,6 @@ const disconnectedHandler: Web3AuthEventListener = (data) =>
   console.log("DISCONNECTED", data);
 
 export default function UserWallet() {
-  // const [web3auth, setWeb3auth] = useState<any>(null);
-  // const [account, setAccount] = useState<string | null>(null);
-
-  // const [idToken, setIdToken] = useState<string | null>(null);
-  // const [privateKey, setPrivateKey] = useState<string | null>(null);
-  // const [events, setEvents] = useState<string[]>([
-  //   `A sample application to demonstrate how to integrate self-custodial\nsocial login and transacting with Web3Auth and userop.js.`,
-  // ]);
-  // const [loading, setLoading] = useState(false);
-
-  // const web3AuthClientId =
-  //   "BJ-D7-ykBL3jVzcBo0EUzeZ3tdtHAour1uRC6MUXIZBlmRUH0tXTLJTEhwTRWMDzCQG0eDjY5a_zeGb5FlFZ76o";
-
-  // useEffect(() => {
-  //   console.log(privateKey);
-  //   console.log(idToken);
-  //   console.log(account);
-  //   const init = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const provider = new JsonRpcProvider("https://rpc.ankr.com/eth_goerli");
-  //       const network = await provider.getNetwork();
-  //       const chainId = network.chainId;
-  //       const web3auth = new Web3Auth({
-  //         clientId: web3AuthClientId,
-  //         web3AuthNetwork: "testnet",
-  //         chainConfig: {
-  //           chainNamespace: CHAIN_NAMESPACES.EIP155,
-  //           chainId: toQuantity(chainId),
-  //           rpcTarget: "https://rpc.ankr.com/eth_goerli",
-  //         },
-  //       });
-
-  //       await web3auth.initModal();
-
-  //       setWeb3auth(web3auth);
-  //       // setAuthorized(web3auth);
-  //     } catch (error) {
-  //       console.error(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   init();
-  // }, []);
-
-  // const createAccount = async (privateKey: string) => {
-  //   console.log(privateKey);
-  //   const acc = new Wallet(privateKey);
-  //   console.log(acc);
-  //   setAccount(acc.address);
-
-  //   console.log(account);
-  //   return await console.log("createAccount");
-  // };
-
-  // const getPrivateKey = async (provider: SafeEventEmitterProvider) => {
-  //   return (await provider.request({
-  //     method: "private_key",
-  //   })) as string;
-  // };
-
-  // const setAuthorized = async (w3auth: Web3Auth) => {
-  //   if (!w3auth.provider) {
-  //     throw new Error("web3authprovider not initialized yet");
-  //   }
-  //   const authenticateUser = await w3auth.authenticateUser();
-
-  //   const privateKey = await getPrivateKey(w3auth.provider);
-  //   const acc = await createAccount(privateKey);
-  //   console.log(acc);
-  //   setIdToken(authenticateUser.idToken);
-  //   setPrivateKey(privateKey);
-  // };
-
-  // const login = async () => {
-  //   if (!web3auth) {
-  //     throw new Error("web3auth not initialized yet");
-  //   }
-  //   const web3authProvider = await web3auth.connect();
-  //   if (!web3authProvider) {
-  //     throw new Error("web3authprovider not initialized yet");
-  //   }
-
-  //   setAuthorized(web3auth);
-  // };
-
-  // const logout = async () => {
-  //   if (!web3auth) {
-  //     throw new Error("web3auth not initialized yet");
-  //   }
-  //   await web3auth.logout();
-  //   setAccount(null);
-  //   setIdToken(null);
-  //   setPrivateKey(null);
-  // };
-
-  // const sendTransaction = async (recipient: string, amount: string) => {
-  //   if (!account) {
-  //     throw new Error("Account not initialized");
-  //   }
-  //   return await console.log("sendTransaction");
-  // };
-
-  // if (loading) {
-  //   return <p>loading...</p>;
-  // }
 
   const [web3AuthModalPack, setWeb3AuthModalPack] =
     useState<Web3AuthModalPack>();
@@ -254,9 +146,19 @@ export default function UserWallet() {
       <Container size="lg">
         <Title>Wallet</Title>
         <Text>Debug mode</Text>
+        <Text>{`EOA: ${safeAuthSignInResponse?.eoa}`}</Text>
+        <Text>{`Safes: ${safeAuthSignInResponse?.safes}`}</Text>
         {/* <Text>{`${account}`}</Text>
         <Text>{`${privateKey}`}</Text>
         <Button onClick={login}>Connect Wallet</Button> */}
+        {safeAuthSignInResponse?.safes?.length === 0 ? (
+          <>
+            <Text>No Safes - Create one?</Text>
+            <Button>Create Safe</Button>
+          </>
+        ) : (
+          <Text>Safe</Text>
+        )}
       </Container>
       <FooterSimple />
     </>
