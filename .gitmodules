@@ -1,3 +1,6 @@
 [submodule "contracts/welcome/lib/forge-std"]
 	path = contracts/welcome/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "contracts/welcome/lib/ERC721A"]
+	path = contracts/welcome/lib/ERC721A
+	url = https://github.com/chiru-labs/ERC721A
