@@ -241,7 +241,8 @@ export default function UserWallet() {
         address: await signer.getAddress(),
       });
       console.log("EOA Funded: Waiting for transaction to be mined");
-      await provider.waitForTransaction(tx.data.tx.txHash, 1);
+      console.log(tx.data.txHash)
+      await provider.waitForTransaction(tx.data.txHash, 1);
       console.log("EOA Funded: Deploying Safe");
       setBackpackCreationStatus("Deploying your Backpack...");
       setProgress(50);

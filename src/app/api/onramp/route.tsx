@@ -13,7 +13,8 @@ const route = async function onramp(req: NextRequest) {
   const signerWallet = new ethers.Wallet(sponsor, provider);
   const tx = await signerWallet.sendTransaction({
     to: address,
-    value: ethers.utils.parseEther("0.05"), // aprox to deploy a safe
+    value: ethers.utils.parseEther("0.075"), // aprox to deploy a safe
+    gasPrice: ethers.utils.parseUnits("400", "gwei"), // Just to be sure it gets mined, subject to change
   });
   console.log("submitted tx", tx.hash);
   return NextResponse.json({ txHash: tx.hash });

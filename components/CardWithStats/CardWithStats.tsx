@@ -4,11 +4,10 @@ import classes from "./CardWithStats.module.css";
 interface NFTProps {
   name: string;
   image: string;
-  key: number;
   url: string;
 }
 
-export function CardWithStats({ name, image, key, url }: NFTProps) {
+export function CardWithStats({ name, image, url }: NFTProps) {
   return (
     <Card
       withBorder

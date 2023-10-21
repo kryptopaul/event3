@@ -27,7 +27,7 @@ export function UserInfoIcons({
             <Text fz="xs" c="dimmed">
               {safeAddress
                 ? `${safeAddress.slice(0, 4)}...${safeAddress.slice(-4)}`
-                : "No Wallet"}
+                : "No Backpack"}
             </Text>
           </Group>
         </div>
