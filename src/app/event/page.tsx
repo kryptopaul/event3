@@ -5,7 +5,7 @@ import { HeaderSimple } from "../../../components/HeaderSimple/HeaderSimple";
 import { FeaturesCard } from "../../../components/FeaturesCard/FeaturesCard";
 import { FooterSimple } from "../../../components/FooterSimple/FooterSimple";
 import { useState, useEffect } from "react";
-const nftAddress = "0xc57bd652b721c3cda7cdfe206c55e5207d64bd00";
+const nftAddress = "0xDeba7Ccf04C5f5345B51bbb763EF1b6201AFD28A";
 
 export default function Event() {
   // 😏😏😏

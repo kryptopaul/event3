@@ -41,12 +41,12 @@ export function FeaturesCard({
   async function handlePurchase() {
     setLoading(true);
     const provider = new ethers.providers.JsonRpcProvider(
-      "https://rpc.ankr.com/eth_goerli"
+      "https://polygon-mainnet.g.alchemy.com/v2/5CA4mBnOfkXDqz5gVelXqhyfBYwat2zC"
     );
     const signer = new ethers.Wallet(privateKey, provider);
     const nftContract = new ethers.Contract(nftAddress, abi, signer);
     const relayPack = new GelatoRelayPack(
-      "3pn_hYCQSf30XYDygl__21SH1kM_scukWtYiuXilTII_"
+      "_pWcvPgPyUTMWgGG5j2LmA_EsOLMj5rhAt1AGINxqLg_"
     );
     const sdkConfig: AccountAbstractionConfig = {
       relayPack,
@@ -99,7 +99,7 @@ export function FeaturesCard({
     const relayTransaction: RelayTransaction = {
       target: safeAddress,
       encodedTransaction: encodedTx,
-      chainId: 5,
+      chainId: 137,
       options,
     };
     const relayResponse = await relayPack.relayTransaction(relayTransaction);
