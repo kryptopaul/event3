@@ -1,3 +1,4 @@
+// @ts-nocheck Type error: Private identifiers are only available when targeting ECMAScript 2015 and higher.
 import { IAdapter, UserInfo } from '@web3auth/base'
 import { ModalConfig, Web3Auth, Web3AuthOptions } from '@web3auth/modal'
 import { ExternalProvider } from '@ethersproject/providers'

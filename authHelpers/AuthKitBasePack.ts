@@ -93,6 +93,7 @@ export abstract class AuthKitBasePack {
    * Get the SafeApiKit instance
    * @returns A SafeApiKit instance
    */
+  // @ts-ignore Type error: Private identifiers are only available when targeting ECMAScript 2015 and higher.
   #getApiKit(txServiceUrl: string): SafeApiKit {
     if (!this.getProvider()) {
       throw new Error('Provider is not defined')

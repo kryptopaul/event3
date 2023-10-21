@@ -13,6 +13,7 @@ import {
 import { IconCheck } from "@tabler/icons-react";
 import Lottie from "lottie-react";
 import ticketLottie from "../../public/lotties/ticketLottie.json";
+import Link from "next/link";
 
 import classes from "./HeroBullets.module.css";
 
@@ -26,7 +27,7 @@ export function HeroBullets() {
             for the new internet.
           </Title>
           <Text c="dimmed" mt="md">
-            Organise events, meetups and conferences with ease. Claim digital
+            Attend events, meetups and conferences with ease. Claim digital
             proofs of attendance regardless of your Web3 experience.
           </Text>
 
@@ -52,23 +53,27 @@ export function HeroBullets() {
               attendance upon each meetup.
             </List.Item>
             <List.Item>
-              <b>Powered by Safe</b> – We're using Safe AA stack to power our
-              platform.
+              <b>Powered by Safe</b> – We&apos;re using Safe AA stack to power
+              our platform.
             </List.Item>
           </List>
 
           <Group mt={30}>
-            <Button radius="xl" size="md" className={classes.control}>
-              Get started
-            </Button>
-            <Button
-              variant="default"
-              radius="xl"
-              size="md"
-              className={classes.control}
-            >
-              Source code
-            </Button>
+            <Link href="/backpack">
+              <Button radius="xl" size="md" className={classes.control}>
+                Get started
+              </Button>
+            </Link>
+            <Link href={"https://github.com/kryptopaul/event3"} target="_blank">
+              <Button
+                variant="default"
+                radius="xl"
+                size="md"
+                className={classes.control}
+              >
+                Source code
+              </Button>
+            </Link>
           </Group>
         </div>
         <Lottie animationData={ticketLottie} className={classes.image} />
