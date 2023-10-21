@@ -50,8 +50,6 @@ export function FeaturesCard({
     };
     const safeAccountAbstraction = new AccountAbstraction(signer);
     await safeAccountAbstraction.init(sdkConfig);
-    console.log(safeAccountAbstraction.getSafeAddress());
-    console.log(safeAccountAbstraction.getSignerAddress());
 
     const safeTransaction: MetaTransactionData = {
       to: nftAddress,
@@ -60,7 +58,6 @@ export function FeaturesCard({
       operation: OperationType.Call,
     };
     // 0xa0712d680000000000000000000000000000000000000000000000000000000000000001
-    console.log(safeTransaction.data);
     const options: MetaTransactionOptions = {
       isSponsored: true,
     };

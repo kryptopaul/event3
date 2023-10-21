@@ -7,8 +7,6 @@ const route = async function onramp(req: NextRequest) {
   const sponsor = process.env.SPONSOR!;
   const data = await req.json();
   const { address } = data;
-  console.log("address", address);
-  console.log("sponsor", sponsor);
   const provider = new ethers.providers.JsonRpcProvider(
     "https://rpc.ankr.com/eth_goerli"
   );
