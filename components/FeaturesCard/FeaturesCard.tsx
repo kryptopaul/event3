@@ -20,7 +20,7 @@ import {
   RelayTransaction,
 } from "@safe-global/safe-core-sdk-types";
 import axios from "axios";
-
+import { useState } from "react";
 interface FeaturesCardProps {
   privateKey: string;
   safeAddress: string;
@@ -36,7 +36,10 @@ export function FeaturesCard({
   email,
   nftAddress,
 }: FeaturesCardProps) {
+  const [loading, setLoading] = useState(false);
+
   async function handlePurchase() {
+    setLoading(true);
     const provider = new ethers.providers.JsonRpcProvider(
       "https://rpc.ankr.com/eth_goerli"
     );
@@ -50,8 +53,6 @@ export function FeaturesCard({
     };
     const safeAccountAbstraction = new AccountAbstraction(signer);
     await safeAccountAbstraction.init(sdkConfig);
-    console.log(safeAccountAbstraction.getSafeAddress());
-    console.log(safeAccountAbstraction.getSignerAddress());
 
     const safeTransaction: MetaTransactionData = {
       to: nftAddress,
@@ -115,7 +116,11 @@ export function FeaturesCard({
       console.log("status", status);
       await new Promise((r) => setTimeout(r, 1000));
     } while (status !== "ExecSuccess");
+    // Notify owner
+    await axios.post("/api/webhook", { name, email });
     console.log("done");
+    setLoading(false);
+    alert("You have successfully signed up!");
   }
 
   return (
@@ -134,7 +139,13 @@ export function FeaturesCard({
 
       <Card.Section className={classes.section}>
         <Group gap={30}>
-          <Button radius="xl" size="lg" style={{ flex: 1 }} onClick={handlePurchase}>
+          <Button
+            radius="xl"
+            size="lg"
+            style={{ flex: 1 }}
+            onClick={handlePurchase}
+            loading={loading}
+          >
             Sign up
           </Button>
         </Group>
