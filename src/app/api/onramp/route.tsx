@@ -8,12 +8,12 @@ const route = async function onramp(req: NextRequest) {
   const data = await req.json();
   const { address } = data;
   const provider = new ethers.providers.JsonRpcProvider(
-    "https://rpc.ankr.com/eth_goerli"
+    "https://polygon-mainnet.g.alchemy.com/v2/5CA4mBnOfkXDqz5gVelXqhyfBYwat2zC"
   );
   const signerWallet = new ethers.Wallet(sponsor, provider);
   const tx = await signerWallet.sendTransaction({
     to: address,
-    value: ethers.utils.parseEther("0.005"),
+    value: ethers.utils.parseEther("0.05"), // aprox to deploy a safe
   });
   console.log("submitted tx", tx.hash);
   return NextResponse.json({ txHash: tx.hash });

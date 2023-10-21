@@ -20,7 +20,7 @@ import {
   RelayTransaction,
 } from "@safe-global/safe-core-sdk-types";
 import axios from "axios";
-
+import { useState } from "react";
 interface FeaturesCardProps {
   privateKey: string;
   safeAddress: string;
@@ -36,14 +36,17 @@ export function FeaturesCard({
   email,
   nftAddress,
 }: FeaturesCardProps) {
+  const [loading, setLoading] = useState(false);
+
   async function handlePurchase() {
+    setLoading(true);
     const provider = new ethers.providers.JsonRpcProvider(
-      "https://rpc.ankr.com/eth_goerli"
+      "https://polygon-mainnet.g.alchemy.com/v2/5CA4mBnOfkXDqz5gVelXqhyfBYwat2zC"
     );
     const signer = new ethers.Wallet(privateKey, provider);
     const nftContract = new ethers.Contract(nftAddress, abi, signer);
     const relayPack = new GelatoRelayPack(
-      "3pn_hYCQSf30XYDygl__21SH1kM_scukWtYiuXilTII_"
+      "_pWcvPgPyUTMWgGG5j2LmA_EsOLMj5rhAt1AGINxqLg_"
     );
     const sdkConfig: AccountAbstractionConfig = {
       relayPack,
@@ -96,7 +99,7 @@ export function FeaturesCard({
     const relayTransaction: RelayTransaction = {
       target: safeAddress,
       encodedTransaction: encodedTx,
-      chainId: 5,
+      chainId: 137,
       options,
     };
     const relayResponse = await relayPack.relayTransaction(relayTransaction);
@@ -112,7 +115,11 @@ export function FeaturesCard({
       console.log("status", status);
       await new Promise((r) => setTimeout(r, 1000));
     } while (status !== "ExecSuccess");
+    // Notify owner
+    await axios.post("/api/webhook", { name, email });
     console.log("done");
+    setLoading(false);
+    alert("You have successfully signed up!");
   }
 
   return (
@@ -131,7 +138,13 @@ export function FeaturesCard({
 
       <Card.Section className={classes.section}>
         <Group gap={30}>
-          <Button radius="xl" size="lg" style={{ flex: 1 }} onClick={handlePurchase}>
+          <Button
+            radius="xl"
+            size="lg"
+            style={{ flex: 1 }}
+            onClick={handlePurchase}
+            loading={loading}
+          >
             Sign up
           </Button>
         </Group>

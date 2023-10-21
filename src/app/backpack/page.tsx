@@ -64,18 +64,22 @@ export default function UserWallet() {
   // set stuff to be used by the event page (yes, I know but I'm too late to do this properly  :( )
   useEffect(() => {
     (async () => {
+      try {
       //@ts-ignore
-      const privateKey = await web3AuthModalPack?.getProvider()?.request({
-        method: "eth_private_key",
-      });
-      localStorage.setItem("privateKey", privateKey);
-      const safeAddress = safeAuthSignInResponse?.safes![0]!;
-      localStorage.setItem("safeAddress", safeAddress);
-      const email = userInfo?.email!;
-      localStorage.setItem("email", email);
-      const name = userInfo?.name!;
-      localStorage.setItem("name", name);
-    })();
+        const privateKey = await web3AuthModalPack?.getProvider()?.request({
+          method: "eth_private_key",
+        });
+        localStorage.setItem("privateKey", privateKey);
+        const safeAddress = safeAuthSignInResponse?.safes![0]!;
+        localStorage.setItem("safeAddress", safeAddress);
+        const email = userInfo?.email!;
+        localStorage.setItem("email", email);
+        const name = userInfo?.name!;
+        localStorage.setItem("name", name);
+      } catch (error) {
+        console.log(error);
+      }
+      })();
   }, [web3AuthModalPack, safeAuthSignInResponse, userInfo]);
 
   useEffect(() => {
@@ -83,11 +87,11 @@ export default function UserWallet() {
       const options: Web3AuthOptions = {
         clientId:
           "BJ-D7-ykBL3jVzcBo0EUzeZ3tdtHAour1uRC6MUXIZBlmRUH0tXTLJTEhwTRWMDzCQG0eDjY5a_zeGb5FlFZ76o",
-        web3AuthNetwork: "testnet",
+        web3AuthNetwork: "sapphire_devnet",
         chainConfig: {
           chainNamespace: CHAIN_NAMESPACES.EIP155,
-          chainId: "0x5",
-          rpcTarget: `https://rpc.ankr.com/eth_goerli`,
+          chainId: "0x89",
+          rpcTarget: `https://polygon.llamarpc.com`,
         },
         uiConfig: {
           loginMethodsOrder: ["google", "facebook"],
@@ -119,7 +123,7 @@ export default function UserWallet() {
       });
 
       const web3AuthModalPack = new Web3AuthModalPack({
-        txServiceUrl: "https://safe-transaction-goerli.safe.global",
+        txServiceUrl: "https://safe-transaction-polygon.safe.global",
       });
 
       await web3AuthModalPack.init({
@@ -204,7 +208,7 @@ export default function UserWallet() {
         "Preparing the informaton for your Backpack..."
       );
       const provider = new ethers.providers.JsonRpcProvider(
-        "https://rpc.ankr.com/eth_goerli"
+        "https://polygon-mainnet.g.alchemy.com/v2/5CA4mBnOfkXDqz5gVelXqhyfBYwat2zC"
       );
 
       // @ts-ignore
@@ -216,7 +220,7 @@ export default function UserWallet() {
         ethers,
         signerOrProvider: signer,
       });
-      const txServiceUrl = "https://safe-transaction-goerli.safe.global";
+      const txServiceUrl = "https://safe-transaction-polygon.safe.global";
       const safeService = new SafeApiKit({
         txServiceUrl,
         ethAdapter: ethAdapterOwner,
@@ -244,17 +248,17 @@ export default function UserWallet() {
       const safeSdkOwner = await safeFactory.deploySafe({ safeAccountConfig });
       const safeAddress = await safeSdkOwner.getAddress();
       console.log("Your Safe has been deployed:");
-      console.log(`https://goerli.etherscan.io/address/${safeAddress}`);
-      console.log(`https://app.safe.global/gor:${safeAddress}`);
+      console.log(`https://polygonscan.com/address/${safeAddress}`);
+      console.log(`https://app.safe.global/matic:${safeAddress}`);
 
       // Minting Welcome NFT
       console.log("Minting Welcome NFT");
       setBackpackCreationStatus("Minting your Welcome collectible...");
       setProgress(75);
-      const nftAddress = "0x78385a1be94e2a04c07bbf5fa01ee23efd218653";
+      const nftAddress = "0x900422824d71eedfabddce5bf42381ea5641d8ec";
       const nftContract = new ethers.Contract(nftAddress, abi, signer);
       const relayPack = new GelatoRelayPack(
-        "3pn_hYCQSf30XYDygl__21SH1kM_scukWtYiuXilTII_"
+        "_pWcvPgPyUTMWgGG5j2LmA_EsOLMj5rhAt1AGINxqLg_"
       );
       const sdkConfig: AccountAbstractionConfig = {
         relayPack,
@@ -306,7 +310,7 @@ export default function UserWallet() {
       const relayTransaction: RelayTransaction = {
         target: safeAddress,
         encodedTransaction: encodedTx,
-        chainId: 5,
+        chainId: 137,
         options,
       };
       const relayResponse = await relayPack.relayTransaction(relayTransaction);
@@ -418,7 +422,7 @@ export default function UserWallet() {
                           "https://ipfs.io/ipfs/"
                         )}
                         // https://testnets.opensea.io/assets/goerli/0xf4e4ef564dea63fd007102b335338cbe0869bc01/2
-                        url={`https://testnets.opensea.io/assets/goerli/${nft.contract.address}/${nft.tokenId}`}
+                        url={`https://opensea.io/assets/matic/${nft.contract.address}/${nft.tokenId}`}
                       />
                     );
                   })

@@ -11,7 +11,7 @@ const route = async function getNFTs(req: NextRequest) {
 
   const settings = {
     apiKey: alchemyKey, // Replace with your Alchemy API Key.
-    network: Network.ETH_GOERLI, // Replace with your network.
+    network: Network.MATIC_MAINNET, // Replace with your network.
   };
 
   const alchemy = new Alchemy(settings);
