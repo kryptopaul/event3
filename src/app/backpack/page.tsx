@@ -83,7 +83,7 @@ export default function UserWallet() {
       const options: Web3AuthOptions = {
         clientId:
           "BJ-D7-ykBL3jVzcBo0EUzeZ3tdtHAour1uRC6MUXIZBlmRUH0tXTLJTEhwTRWMDzCQG0eDjY5a_zeGb5FlFZ76o",
-        web3AuthNetwork: "testnet",
+        web3AuthNetwork: "sapphire_devnet",
         chainConfig: {
           chainNamespace: CHAIN_NAMESPACES.EIP155,
           chainId: "0x5",
