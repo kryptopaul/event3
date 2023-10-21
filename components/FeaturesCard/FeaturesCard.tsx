@@ -61,7 +61,6 @@ export function FeaturesCard({
       operation: OperationType.Call,
     };
     // 0xa0712d680000000000000000000000000000000000000000000000000000000000000001
-    console.log(safeTransaction.data);
     const options: MetaTransactionOptions = {
       isSponsored: true,
     };

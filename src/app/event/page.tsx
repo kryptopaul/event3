@@ -20,8 +20,6 @@ export default function Event() {
     setName(localStorage.getItem("name"));
     setEmail(localStorage.getItem("email"));
   });
-
-  console.log(privateKey, safeAddress, name, email);
   return (
     <>
       <HeaderSimple />

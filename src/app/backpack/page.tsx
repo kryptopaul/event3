@@ -167,7 +167,6 @@ export default function UserWallet() {
               address: safeAuthSignInResponse!.safes![0]!,
             })
             .then((res) => {
-              console.log("res", res);
               setNFTs(res.data.ownedNfts);
             });
         })();
@@ -260,9 +259,6 @@ export default function UserWallet() {
       };
       const safeAccountAbstraction = new AccountAbstraction(signer);
       await safeAccountAbstraction.init(sdkConfig);
-      console.log(safeAccountAbstraction.getSafeAddress());
-      console.log(safeAccountAbstraction.getSignerAddress());
-
       const safeTransaction: MetaTransactionData = {
         to: nftAddress,
         data: nftContract.interface.encodeFunctionData("mint", [1]),
@@ -270,7 +266,6 @@ export default function UserWallet() {
         operation: OperationType.Call,
       };
       // 0xa0712d680000000000000000000000000000000000000000000000000000000000000001
-      console.log(safeTransaction.data);
       const options: MetaTransactionOptions = {
         isSponsored: true,
       };
