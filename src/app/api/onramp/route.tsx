@@ -15,9 +15,8 @@ const route = async function onramp(req: NextRequest) {
     to: address,
     value: ethers.utils.parseEther("0.005"),
   });
-  await tx.wait(1);
-  console.log("tx", tx);
-  return NextResponse.json("success");
+  console.log("submitted tx", tx.hash);
+  return NextResponse.json({ txHash: tx.hash });
 };
 
 export const POST = route;

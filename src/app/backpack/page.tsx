@@ -230,12 +230,14 @@ export default function UserWallet() {
       };
       console.log("Safe info prepared: Funding EOA");
       setBackpackCreationStatus(
-        "Preparing Ethereum fees... (don't worry, it's on us!)"
+        "Preparing Polygon fees... (don't worry, it's on us!)"
       );
       setProgress(25);
-      await axios.post("/api/onramp", {
+      const tx = await axios.post("/api/onramp", {
         address: await signer.getAddress(),
       });
+      console.log("EOA Funded: Waiting for transaction to be mined");
+      await provider.waitForTransaction(tx.data.tx.txHash, 1);
       console.log("EOA Funded: Deploying Safe");
       setBackpackCreationStatus("Deploying your Backpack...");
       setProgress(50);
