@@ -65,5 +65,5 @@ As for the UX optimization strategies, a few notable ones include:
 
 - **Instant Feedback**: During the Backpack's first setup, there's no need for users to refresh the page to see the results of their transaction. Once the platform mints a "Welcome" collectible, it's instantly displayed in their Backpack panel without any extra actions.
 
-- **Progress Bar**: I've integrated an animated progress bar. This feature provides users with visual feedback on the current stage of the deployment, enhancing the overall experience.
+- **Progress Bar**: I've integrated an animated progress bar. This feature provides users with visual feedback on the current stage of the Backpack (Safe) deployment, enhancing the overall experience.
 
