@@ -53,8 +53,9 @@ The frontend itself is built with NextJS and Mantine UI library.
 
 Inside the "contracts" folder, you'll find two contracts used by the app. However, for reference, the contracts deployed on the Polygon Mainnet are:
 
-- **Welcome NFT**: `[0x900422824d71eedfabddce5bf42381ea5641d8ec](https://polygonscan.com/address/0x900422824d71eedfabddce5bf42381ea5641d8ec)`
-- **Epic Web3 Meetup**: `[0xdeba7ccf04c5f5345b51bbb763ef1b6201afd28a](https://polygonscan.com/address/0xdeba7ccf04c5f5345b51bbb763ef1b6201afd28a)`
+- **Welcome NFT**: [0x900422824d71eedfabddce5bf42381ea5641d8ec](https://polygonscan.com/address/0x900422824d71eedfabddce5bf42381ea5641d8ec)
+- **Epic Web3 Meetup**: [0xdeba7ccf04c5f5345b51bbb763ef1b6201afd28a](https://polygonscan.com/address/0xdeba7ccf04c5f5345b51bbb763ef1b6201afd28a)
+
 
 ## UX Optimisations
 
